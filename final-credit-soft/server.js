@@ -61,7 +61,6 @@ app.post("/signup", async (req, res) => {
 });
 
 // Login Route
-// Login Route
 app.post("/login", (req, res) => {
   const { userId, password } = req.body;
 
@@ -97,6 +96,35 @@ app.post("/login", (req, res) => {
       expiresIn: "1h",
     });
     return res.json({ authToken: token });
+  });
+});
+
+// New Route to Store Verification Data
+app.post("/api/verification", (req, res) => {
+  const { dob, nid, placeOfBirth } = req.body;
+
+  const status = "incomplete";
+  // Log the received verification data
+  console.log("Verification data received:", req.body);
+
+  // Check if all required fields are present
+  if (!dob || !nid || !placeOfBirth) {
+    return res
+      .status(400)
+      .json({ success: false, message: "All fields are required." });
+  }
+
+  // Insert verification data into the database
+  const query =
+    "INSERT INTO person_info (dob, nid, country_of_birth, status) VALUES (?, ?, ?, ?)";
+  db.query(query, [dob, nid, placeOfBirth, status], (err, result) => {
+    if (err) {
+      console.error("Error saving verification data:", err);
+      return res.status(500).json({ success: false, message: "Server error" });
+    }
+    res
+      .status(201)
+      .json({ success: true, message: "Verification data saved successfully" });
   });
 });
 

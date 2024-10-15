@@ -25,7 +25,7 @@
         </div>
 
         <div class="form-group">
-          <label for="dob">Date of Birth:</label>
+          <label :for="'dob-' + index">Date of Birth:</label>
           <input
             :id="'dob-' + index"
             type="date"
@@ -37,7 +37,7 @@
         </div>
 
         <div class="form-group">
-          <label for="nid">NID:</label>
+          <label :for="'nid-' + index">NID:</label>
           <input
             :id="'nid-' + index"
             v-model="fields.nid"
@@ -48,7 +48,7 @@
         </div>
 
         <div class="form-group">
-          <label for="placeOfBirth">Place of Birth:</label>
+          <label :for="'country_of_birth-' + index">Place of Birth:</label>
           <select
             :id="'placeOfBirth-' + index"
             v-model="fields.placeOfBirth"
@@ -68,7 +68,7 @@
         <button
           type="button"
           class="verify-button"
-          @click="verifyAndNavigate(fields)"
+          @click="submitVerificationForm(fields)"
         >
           Verify
         </button>
@@ -83,6 +83,7 @@ export default {
   data() {
     return {
       verificationForms: [], // Array to hold multiple verification forms
+      errorMessage: "", // To store error messages if submission fails
     };
   },
   methods: {
@@ -90,17 +91,61 @@ export default {
       this.verificationForms.push({
         dob: "",
         nid: "",
-        placeOfBirth: "",
+        country_of_birth: "",
+        status: "",
       });
     },
     removeVerificationForm(index) {
       this.verificationForms.splice(index, 1); // Removes the form at the given index
     },
-    verifyAndNavigate(fields) {
-      if (fields.dob && fields.nid && fields.placeOfBirth) {
+
+    async submitVerificationForm(fields) {
+      try {
+        // Log the form data before sending
+        console.log("Submitting verification form:", {
+          dob: fields.dob,
+          nid: fields.nid,
+          country_of_birth: fields.country_of_birth,
+        });
+
+        // Ensure all fields are filled out before submission
+        if (!fields.dob || !fields.nid || !fields.placeOfBirth) {
+          throw new Error(
+            "Please fill out all required fields before submitting."
+          );
+        }
+
+        const response = await fetch("http://localhost:5000/api/verification", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            dob: fields.dob,
+            nid: fields.nid,
+            placeOfBirth: fields.placeOfBirth,
+          }),
+        });
+
+        // Log the response text for debugging
+        const responseText = await response.text();
+        console.log("Response from server:", responseText); // Log the raw response text
+
+        if (!response.ok) {
+          // If the response is not OK, throw an error with the response text
+          throw new Error(responseText);
+        }
+
+        const data = JSON.parse(responseText); // Parse response as JSON
+        // alert("Verification form submitted successfully!");
+        console.log("Parsed response data:", data); // Log parsed response data for debugging
+
+        // Optionally redirect after successful submission
         this.$router.push({ name: "Person" });
-      } else {
-        alert("Please fill out all required fields.");
+      } catch (error) {
+        // Catch and display the error
+        this.errorMessage =
+          error.message ||
+          "Failed to submit verification form. Please try again.";
+        console.error("Verification Form Submission Error:", error);
       }
     },
   },
@@ -108,6 +153,7 @@ export default {
 </script>
 
 <style scoped>
+/* Your CSS styles remain unchanged */
 .add-new-button {
   padding: 12px 20px;
   font-size: 16px;
@@ -117,7 +163,7 @@ export default {
   cursor: pointer;
   margin-bottom: 20px;
   background-color: #17a2b8;
-  width: auto; /* Keep the button at its content width */
+  width: auto;
 }
 
 .add-new-button:hover {
@@ -126,17 +172,17 @@ export default {
 
 .verification-container {
   display: flex;
-  flex-wrap: wrap; /* Allow items to wrap to the next line */
-  gap: 20px; /* Space between forms */
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .new-fields {
-  flex: 1 1 calc(50% - 20px); /* Adjust width to take up 50% minus the gap */
+  flex: 1 1 calc(50% - 20px);
   padding: 15px;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box; /* Include padding and border in width/height */
+  box-sizing: border-box;
 }
 
 .fields-header {
@@ -206,7 +252,7 @@ export default {
 /* Responsive Design */
 @media (max-width: 768px) {
   .new-fields {
-    flex: 1 1 100%; /* Make each form take full width on small screens */
+    flex: 1 1 100%;
   }
 }
 </style>

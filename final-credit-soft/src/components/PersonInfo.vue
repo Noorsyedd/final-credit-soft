@@ -360,7 +360,7 @@ export default {
   justify-content: center;
   align-items: flex-start; /* Aligns the form to the top instead of the center */
   padding: 20px;
-  margin-left: 200px; /* Adjust this margin based on your navbar width */
+  margin-left: calc(200px + 2%); /* Dynamic adjustment based on navbar width */
 }
 
 .form-box {
@@ -375,6 +375,14 @@ export default {
   background-color: #fff;
   margin-top: 20px;
   overflow-y: auto; /* Enable vertical scrolling */
+  margin-right: auto; /* Push the form to the right */
+}
+
+@media screen and (max-width: 768px) {
+  .form-box {
+    margin-left: 10px; /* Adjust margin for smaller screens */
+    margin-right: 10px;
+  }
 }
 
 .row {
@@ -389,9 +397,23 @@ export default {
   margin: 0 10px 15px;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
+button {
+  width: auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-top: 20px;
+  align-self: center; /* Center button within the form */
+}
+
+.section h3 {
+  border-bottom: 2px solid #007bff; /* Underline section headers */
+  margin-bottom: 15px;
+  padding-bottom: 5px;
 }
 
 .radio-group {
@@ -411,67 +433,5 @@ input {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-}
-
-button {
-  width: auto; /* Set button width to auto */
-  padding: 10px 20px; /* Adjust padding for appropriate button size */
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9em; /* Slightly smaller font size */
-  margin-top: 20px; /* Add margin to top for spacing */
-  display: block; /* Ensure block display for centering */
-  align-self: center; /* Center button within the form */
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-.section {
-  margin-top: 20px;
-  padding-top: 10px;
-  border-top: 2px solid #007bff;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .form-box {
-    padding: 10px;
-  }
-
-  .row {
-    flex-direction: column; /* Stack the fields on top of each other */
-  }
-
-  .form-group {
-    width: 100%;
-  }
-
-  .container {
-    margin-left: 0;
-    padding: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  h2,
-  h3 {
-    font-size: 1.2em;
-  }
-
-  button {
-    width: 100%;
-    font-size: 1em;
-    padding: 12px;
-  }
-
-  select,
-  input {
-    font-size: 1em;
-  }
 }
 </style>
