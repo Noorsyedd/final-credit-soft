@@ -128,6 +128,99 @@ app.post("/api/verification", (req, res) => {
   });
 });
 
+// Fetch incomplete records
+app.get("/api/incomplete-person-info", (req, res) => {
+  const query = "SELECT * FROM person_info WHERE status = 'incomplete'";
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Error fetching incomplete records:", err);
+      return res.status(500).json({ success: false, message: "Server error" });
+    }
+
+    res.status(200).json({ success: true, data: results });
+  });
+});
+
+// Update person info and mark as complete
+app.put("/api/update-person-info/:id", (req, res) => {
+  const { id } = req.params;
+  const {
+    name,
+    father_name,
+    mother_name,
+    spouse_name,
+    nid,
+    dob,
+    district_of_birth,
+    tin,
+    gender,
+    country_of_birth,
+    permanent_district,
+    permanent_postal_code,
+    permanent_details,
+    permanent_country,
+    present_district,
+    present_postal_code,
+    present_details,
+    present_country,
+    id_type,
+    id_issue_date,
+    id_number,
+    id_issue_country,
+    sector_code,
+    telephone_number,
+  } = req.body;
+
+  const query = `
+    UPDATE person_info 
+    SET name = ?, father_name = ?, mother_name = ?, spouse_name = ?, nid = ?, dob = ?, district_of_birth = ?, tin = ?, gender = ?, country_of_birth = ?, 
+        permanent_district = ?, permanent_postal_code = ?, permanent_details = ?, permanent_country = ?, 
+        present_district = ?, present_postal_code = ?, present_details = ?, present_country = ?, 
+        id_type = ?, id_issue_date = ?, id_number = ?, id_issue_country = ?, sector_code = ?, telephone_number = ?, status = 'complete' 
+    WHERE id = ?
+  `;
+
+  const values = [
+    name,
+    father_name,
+    mother_name,
+    spouse_name,
+    nid,
+    dob,
+    district_of_birth,
+    tin,
+    gender,
+    country_of_birth,
+    permanent_district,
+    permanent_postal_code,
+    permanent_details,
+    permanent_country,
+    present_district,
+    present_postal_code,
+    present_details,
+    present_country,
+    id_type,
+    id_issue_date,
+    id_number,
+    id_issue_country,
+    sector_code,
+    telephone_number,
+    id,
+  ];
+
+  db.query(query, values, (err, result) => {
+    if (err) {
+      console.error("Error updating person info:", err);
+      return res.status(500).json({ success: false, message: "Server error" });
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "Person info updated successfully" });
+  });
+});
+
 // Start the server
 const PORT = 5000;
 app.listen(PORT, () => {

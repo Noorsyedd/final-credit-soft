@@ -4,31 +4,45 @@
     <div v-if="showSecondForm" class="form-box">
       <h2>Add Subject (Person)</h2>
 
-      <form @submit.prevent="handleSecondFormSubmit">
+      <form @submit.prevent="submitForm">
         <!-- Row 1 -->
         <div class="row">
           <div class="form-group">
             <label for="name">Name <span class="required">*</span>:</label>
-            <input type="text" v-model="name" id="name" required />
+            <input type="text" v-model="personInfo.name" id="name" required />
           </div>
 
           <div class="form-group">
             <label for="fatherName"
               >Father's Name <span class="required">*</span>:</label
             >
-            <input type="text" v-model="fatherName" id="fatherName" required />
+            <input
+              type="text"
+              v-model="personInfo.father_name"
+              id="fatherName"
+              required
+            />
           </div>
 
           <div class="form-group">
             <label for="motherName"
               >Mother's Name <span class="required">*</span>:</label
             >
-            <input type="text" v-model="motherName" id="motherName" required />
+            <input
+              type="text"
+              v-model="personInfo.mother_name"
+              id="motherName"
+              required
+            />
           </div>
 
           <div class="form-group">
             <label for="spouseName">Spouse's Name:</label>
-            <input type="text" v-model="spouseName" id="spouseName" />
+            <input
+              type="text"
+              v-model="personInfo.spouse_name"
+              id="spouseName"
+            />
           </div>
         </div>
 
@@ -36,22 +50,27 @@
         <div class="row">
           <div class="form-group">
             <label for="nid">NID <span class="required">*</span>:</label>
-            <input type="text" v-model="nid" id="nid" required />
+            <input type="text" v-model="personInfo.nid" id="nid" required />
           </div>
 
           <div class="form-group">
             <label for="dob"
               >Date of Birth <span class="required">*</span>:</label
             >
-            <input type="date" v-model="dob" id="dob" required />
+            <input type="date" v-model="personInfo.dob" id="dob" required />
           </div>
 
           <div class="form-group">
             <label for="districtOfBirth"
               >District of Birth <span class="required">*</span>:</label
             >
-            <select v-model="districtOfBirth" id="districtOfBirth" required>
+            <select
+              v-model="personInfo.district_of_birth"
+              id="districtOfBirth"
+              required
+            >
               <option value="" disabled>Select District</option>
+              <option value="Dhaka">Dhaka</option>
               <option
                 v-for="district in districts"
                 :key="district"
@@ -64,7 +83,7 @@
 
           <div class="form-group">
             <label for="tin">TIN:</label>
-            <input type="text" v-model="tin" id="tin" />
+            <input type="text" v-model="personInfo.tin" id="tin" />
           </div>
         </div>
 
@@ -74,11 +93,21 @@
             <label for="gender">Gender <span class="required">*</span>:</label>
             <div class="radio-group">
               <label
-                ><input type="radio" value="Male" v-model="gender" required />
+                ><input
+                  type="radio"
+                  value="Male"
+                  v-model="personInfo.gender"
+                  required
+                />
                 Male</label
               >
               <label
-                ><input type="radio" value="Female" v-model="gender" required />
+                ><input
+                  type="radio"
+                  value="Female"
+                  v-model="personInfo.gender"
+                  required
+                />
                 Female</label
               >
             </div>
@@ -88,8 +117,13 @@
             <label for="countryOfBirth"
               >Country of Birth <span class="required">*</span>:</label
             >
-            <select v-model="countryOfBirth" id="countryOfBirth" required>
+            <select
+              v-model="personInfo.country_of_birth"
+              id="countryOfBirth"
+              required
+            >
               <option value="" disabled>Select Country</option>
+              <option value="Bangladesh">Bangladesh</option>
               <option
                 v-for="country in countries"
                 :key="country"
@@ -110,11 +144,12 @@
                 >District <span class="required">*</span>:</label
               >
               <select
-                v-model="permanentDistrict"
+                v-model="personInfo.permanent_district"
                 id="permanentDistrict"
                 required
               >
                 <option value="" disabled>Select District</option>
+                <option value="Dhaka">Dhaka</option>
                 <option
                   v-for="district in districts"
                   :key="district"
@@ -131,7 +166,7 @@
               >
               <input
                 type="text"
-                v-model="permanentPostalCode"
+                v-model="personInfo.permanent_postal_code"
                 id="permanentPostalCode"
                 required
               />
@@ -143,7 +178,7 @@
               >
               <input
                 type="text"
-                v-model="permanentDetails"
+                v-model="personInfo.permanent_details"
                 id="permanentDetails"
                 required
               />
@@ -153,8 +188,13 @@
               <label for="permanentCountry"
                 >Country <span class="required">*</span>:</label
               >
-              <select v-model="permanentCountry" id="permanentCountry" required>
+              <select
+                v-model="personInfo.permanent_country"
+                id="permanentCountry"
+                required
+              >
                 <option value="" disabled>Select Country</option>
+                <option value="Bangladesh">Bangladesh</option>
                 <option
                   v-for="country in countries"
                   :key="country"
@@ -173,8 +213,12 @@
           <div class="row">
             <div class="form-group">
               <label for="presentDistrict">District:</label>
-              <select v-model="presentDistrict" id="presentDistrict">
+              <select
+                v-model="personInfo.present_district"
+                id="presentDistrict"
+              >
                 <option value="" disabled>Select District</option>
+                <option value="Dhaka">Dhaka</option>
                 <option
                   v-for="district in districts"
                   :key="district"
@@ -189,20 +233,25 @@
               <label for="presentPostalCode">Postal Code:</label>
               <input
                 type="text"
-                v-model="presentPostalCode"
+                v-model="personInfo.present_postal_code"
                 id="presentPostalCode"
               />
             </div>
 
             <div class="form-group">
               <label for="presentDetails">Details:</label>
-              <input type="text" v-model="presentDetails" id="presentDetails" />
+              <input
+                type="text"
+                v-model="personInfo.present_details"
+                id="presentDetails"
+              />
             </div>
 
             <div class="form-group">
               <label for="presentCountry">Country:</label>
-              <select v-model="presentCountry" id="presentCountry">
+              <select v-model="personInfo.present_country" id="presentCountry">
                 <option value="" disabled>Select Country</option>
+                <option value="Bangladesh">Bangladesh</option>
                 <option
                   v-for="country in countries"
                   :key="country"
@@ -221,8 +270,9 @@
           <div class="row">
             <div class="form-group">
               <label for="idType">ID Type:</label>
-              <select v-model="idType" id="idType">
+              <select v-model="personInfo.id_type" id="idType">
                 <option value="" disabled>Select ID Type</option>
+                <option value="NID">NID</option>
                 <option v-for="id in idTypes" :key="id" :value="id">
                   {{ id }}
                 </option>
@@ -231,18 +281,23 @@
 
             <div class="form-group">
               <label for="idIssueDate">ID Issue Date:</label>
-              <input type="date" v-model="idIssueDate" id="idIssueDate" />
+              <input
+                type="date"
+                v-model="personInfo.id_issue_date"
+                id="idIssueDate"
+              />
             </div>
 
             <div class="form-group">
               <label for="idNumber">ID Number:</label>
-              <input type="text" v-model="idNumber" id="idNumber" />
+              <input type="text" v-model="personInfo.id_number" id="idNumber" />
             </div>
 
             <div class="form-group">
               <label for="idIssueCountry">ID Issue Country:</label>
-              <select v-model="idIssueCountry" id="idIssueCountry">
+              <select v-model="personInfo.id_issue_country" id="idIssueCountry">
                 <option value="" disabled>Select Country</option>
+                <option value="Bangladesh">Bangladesh</option>
                 <option
                   v-for="country in countries"
                   :key="country"
@@ -263,8 +318,9 @@
               <label for="sectorCode"
                 >Sector Code <span class="required">*</span>:</label
               >
-              <select v-model="sectorCode" id="sectorCode" required>
+              <select v-model="personInfo.sector_code" id="sectorCode" required>
                 <option value="" disabled>Select Sector Code</option>
+                <option value="Sector 1">Sector 1</option>
                 <option v-for="sector in sectors" :key="sector" :value="sector">
                   {{ sector }}
                 </option>
@@ -275,7 +331,7 @@
               <label for="telephoneNumber">Telephone Number:</label>
               <input
                 type="text"
-                v-model="telephoneNumber"
+                v-model="personInfo.telephone_number"
                 id="telephoneNumber"
               />
             </div>
@@ -291,64 +347,111 @@
 
 <script>
 export default {
-  name: "SubjectInfo",
   data() {
     return {
-      // Form data properties
-      name: "",
-      fatherName: "",
-      motherName: "",
-      spouseName: "",
-      nid: "",
-      dob: "",
-      districtOfBirth: "",
-      tin: "",
-      gender: "",
-      countryOfBirth: "",
-      permanentDistrict: "",
-      permanentPostalCode: "",
-      permanentDetails: "",
-      permanentCountry: "",
-      presentDistrict: "",
-      presentPostalCode: "",
-      presentDetails: "",
-      presentCountry: "",
-      idType: "",
-      idIssueDate: "",
-      idNumber: "",
-      idIssueCountry: "",
-      sectorCode: "",
-      telephoneNumber: "",
-
-      // Form control
       showSecondForm: true,
-
-      // Options for dropdowns
-      countries: [
-        "Bangladesh",
-        "Sri Lanka",
-        "Japan",
-        "United States",
-        "Canada",
-        "United Kingdom",
-      ],
-      districts: [
-        "Dhaka",
-        "Chittagong",
-        "Khulna",
-        "Rajshahi",
-        "Sylhet",
-        "Barisal",
-      ],
-      idTypes: ["NID", "Passport", "Driving License"],
-      sectors: ["Sector 1", "Sector 2", "Sector 3"],
+      personInfo: {
+        name: "",
+        father_name: "",
+        mother_name: "",
+        spouse_name: "",
+        nid: "",
+        dob: "", // Date of Birth
+        district_of_birth: "",
+        tin: "",
+        gender: "",
+        country_of_birth: "",
+        permanent_district: "",
+        permanent_postal_code: "",
+        permanent_details: "",
+        permanent_country: "",
+        present_district: "",
+        present_postal_code: "",
+        present_details: "",
+        present_country: "",
+        id_type: "",
+        id_issue_date: "",
+        id_number: "",
+        id_issue_country: "",
+        sector_code: "",
+        telephone_number: "",
+      },
     };
   },
+  mounted() {
+    fetch("http://localhost:5000/api/incomplete-person-info")
+      .then((response) => {
+        console.log("Response headers:", response.headers);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const contentType = response.headers.get("content-type");
+        console.log("Content-Type:", contentType);
+
+        if (contentType && contentType.includes("application/json")) {
+          return response.json(); // Parse JSON response
+        } else {
+          // Log the raw response for debugging
+          return response.text().then((text) => {
+            console.error("Non-JSON response:", text);
+            throw new Error("Response is not JSON");
+          });
+        }
+      })
+      .then((data) => {
+        if (data.success && data.data.length > 0) {
+          // Assuming you take the first incomplete record
+          this.personInfo = data.data[0];
+          // Format date fields to "yyyy-MM-dd"
+          if (this.personInfo.dob) {
+            this.personInfo.dob = this.formatDateToYyyyMmDd(
+              this.personInfo.dob
+            );
+          }
+          if (this.personInfo.id_issue_date) {
+            this.personInfo.id_issue_date = this.formatDateToYyyyMmDd(
+              this.personInfo.id_issue_date
+            );
+          }
+        } else {
+          console.warn("No incomplete person info available");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  },
   methods: {
-    handleSecondFormSubmit() {
-      // Handle the form submission and redirect to success page
-      console.log("Form data:", this.$data);
-      this.$router.push({ name: "SuccessPage" }); // Redirect to SuccessPage
+    // Function to convert ISO date to yyyy-MM-dd
+    formatDateToYyyyMmDd(isoDate) {
+      const date = new Date(isoDate);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed, so add 1
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    },
+
+    submitForm() {
+      const id = this.personInfo.id; // The ID of the person being updated
+      fetch(`http://localhost:5000/api/update-person-info/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(this.personInfo),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            // alert("Person info updated successfully!");
+            // Optionally redirect or clear form
+            this.$router.push({ name: "SuccessPage" });
+          } else {
+            alert("Error updating person info");
+          }
+        })
+        .catch((error) => console.error("Error updating person info:", error));
     },
   },
 };
