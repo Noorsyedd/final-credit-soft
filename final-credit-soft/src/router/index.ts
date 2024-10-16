@@ -34,7 +34,7 @@ import PersonInfo from "@/components/PersonInfo.vue";
 import AddPerson from "@/components/AddPerson.vue";
 import InstitutionInfo from "@/components/InstitutionInfo.vue";
 import AddContact from "@/components/AddContact.vue";
-
+import SuccessPage from "@/components/SuccessPage.vue";
 
 const routes = [
   {
@@ -58,7 +58,7 @@ const routes = [
         name: "InstitutionInfo",
         component: InstitutionInfo,
       },
-      
+
       {
         path: "/add-contact",
         name: "AddContact",
@@ -83,6 +83,11 @@ const routes = [
         path: "/search-inquiry",
         name: "SearchInquiry",
         component: SearchInquiry,
+      },
+      {
+        path: "/success-page",
+        name: "SuccessPage",
+        component: SuccessPage,
       },
       {
         path: "/change-assignment",
@@ -204,10 +209,6 @@ const routes = [
         name: "MonthlyServiceCharge",
         component: MonthlyServiceCharge,
       },
-      
-      
-      
-      
     ],
   },
   {
