@@ -18,15 +18,15 @@
             <tbody>
               <tr>
                 <td>Savings Account</td>
-                <td>$5.00</td>
+                <td>৳500.00</td>
               </tr>
               <tr>
                 <td>Current Account</td>
-                <td>$10.00</td>
+                <td>৳1,000.00</td>
               </tr>
               <tr>
                 <td>Business Account</td>
-                <td>$25.00</td>
+                <td>৳2,500.00</td>
               </tr>
             </tbody>
           </table>
@@ -47,11 +47,11 @@
             <tbody>
               <tr>
                 <td>Domestic Transfers</td>
-                <td>$1.00 per transfer</td>
+                <td>৳100.00 per transfer</td>
               </tr>
               <tr>
                 <td>International Transfers</td>
-                <td>$15.00 per transfer</td>
+                <td>৳1,500.00 per transfer</td>
               </tr>
               <tr>
                 <td>Bill Payments</td>
@@ -59,7 +59,7 @@
               </tr>
               <tr>
                 <td>Check Issuance</td>
-                <td>$2.50 per check</td>
+                <td>৳250.00 per check</td>
               </tr>
             </tbody>
           </table>
@@ -80,11 +80,11 @@
             <tbody>
               <tr>
                 <td>Domestic ATMs</td>
-                <td>$0.50 per withdrawal after 5 free withdrawals</td>
+                <td>৳50.00 per withdrawal after 5 free withdrawals</td>
               </tr>
               <tr>
                 <td>International ATMs</td>
-                <td>$5.00 per withdrawal</td>
+                <td>৳500.00 per withdrawal</td>
               </tr>
             </tbody>
           </table>
@@ -105,15 +105,15 @@
             <tbody>
               <tr>
                 <td>Locker Rent</td>
-                <td>$50.00 per year</td>
+                <td>৳5,000.00 per year</td>
               </tr>
               <tr>
                 <td>Checkbook Issuance</td>
-                <td>$10.00 per checkbook</td>
+                <td>৳1,000.00 per checkbook</td>
               </tr>
               <tr>
                 <td>Account Statement (Printed)</td>
-                <td>$2.00 per statement</td>
+                <td>৳200.00 per statement</td>
               </tr>
             </tbody>
           </table>
@@ -128,9 +128,9 @@
           fee will be charged at the end of the month.
         </p>
         <ul>
-          <li>Savings Account: Minimum balance of $500, Fee: $10.00</li>
-          <li>Current Account: Minimum balance of $1000, Fee: $20.00</li>
-          <li>Business Account: Minimum balance of $5000, Fee: $50.00</li>
+          <li>Savings Account: Minimum balance of ৳50,000, Fee: ৳1,000.00</li>
+          <li>Current Account: Minimum balance of ৳100,000, Fee: ৳2,000.00</li>
+          <li>Business Account: Minimum balance of ৳500,000, Fee: ৳5,000.00</li>
         </ul>
       </section>
     </div>
