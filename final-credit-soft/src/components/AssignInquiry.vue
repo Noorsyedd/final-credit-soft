@@ -218,25 +218,41 @@ export default {
 .assign-inquiry-page {
   max-width: 100%;
   margin: 0 auto;
-  padding: 20px;
-  background-color: #ffffff;
+  padding: 30px;
+  background-color: #f8f9fa; /* Light background for contrast */
   border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Deeper shadow for depth */
 }
 
 .header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 2.5rem; /* Increased font size for visibility */
+  color: #343a40; /* Darker color for better readability */
 }
 
 .main-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center; /* Center content within container */
 }
 
 .form-section,
 .activity-log-section {
-  width: 45%;
+  width: 100%;
+  max-width: 600px; /* Limit width for better focus */
+  margin: 0 auto; /* Center section */
+  background-color: #ffffff; /* White background for forms */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.activity-log-section {
+  margin-top: 20px; /* Space between sections */
 }
 
 .activity-log-section ul {
@@ -245,109 +261,145 @@ export default {
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px; /* Increased spacing */
+}
+
+.form-group label {
+  font-weight: bold; /* Bold labels for better visibility */
+  color: #495057; /* Darker color for contrast */
+}
+
+input[type="text"],
+input[type="date"],
+textarea,
+select {
+  width: 100%;
+  padding: 12px; /* Increased padding for better usability */
+  border: 1px solid #ced4da; /* Light border */
+  border-radius: 4px;
+  font-size: 16px; /* Larger font for readability */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+  transition: border-color 0.2s, box-shadow 0.2s; /* Smooth transition */
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #007bff; /* Highlight border on focus */
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Focus shadow effect */
 }
 
 .submit-btn {
-  padding: 10px 20px;
+  padding: 12px 25px; /* Larger button */
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 16px; /* Larger font for readability */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
 }
 
 .submit-btn:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* Darker shade on hover */
+  transform: translateY(-1px); /* Slight lift effect */
 }
 
 /* Search and Filter Section */
 .filter-section {
   display: flex;
   justify-content: space-between;
-  margin: 20px 0;
+  margin: 30px 0; /* Increased spacing */
 }
 
-.search-bar {
-  padding: 8px;
+.search-bar,
+.filter-select {
+  padding: 12px;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid #ced4da;
   flex-grow: 1;
   margin-right: 10px;
+  transition: border-color 0.2s; /* Smooth transition */
 }
 
-.filter-select {
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+.search-bar:focus,
+.filter-select:focus {
+  border-color: #007bff; /* Highlight border on focus */
 }
 
 /* Inquiry Table */
 .inquiry-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px; /* Added spacing from above elements */
 }
 
 .inquiry-table th,
 .inquiry-table td {
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 12px; /* Increased padding for table cells */
+  border: 1px solid #dee2e6; /* Lighter border for table */
   text-align: left;
 }
 
 .inquiry-table th {
-  background-color: #f1f1f1;
+  background-color: #e9ecef; /* Light gray header */
+  color: #495057; /* Dark text for contrast */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .main-container {
     flex-direction: column;
+    align-items: center; /* Center align for smaller screens */
   }
 
   .form-section,
   .activity-log-section {
-    width: 100%;
+    width: 90%; /* Adjust width for smaller screens */
   }
 
   .filter-section {
-    flex-direction: column;
+    flex-direction: column; /* Stack filter elements */
+    margin-bottom: 20px; /* Add margin */
   }
 
   .filter-section input,
   .filter-section select {
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* Add spacing between inputs */
   }
 
   .inquiry-table th,
   .inquiry-table td {
-    font-size: 14px;
-    padding: 8px;
+    font-size: 14px; /* Smaller font size */
+    padding: 10px; /* Consistent padding for smaller screens */
   }
 }
 
 @media (max-width: 480px) {
   .header h1 {
-    font-size: 1.5rem;
+    font-size: 1.8rem; /* Adjust header size for smaller screens */
   }
 
   .submit-btn {
-    padding: 8px 16px;
-    font-size: 14px;
+    padding: 10px 20px; /* Slightly smaller button */
+    font-size: 14px; /* Smaller font size */
   }
 
   .search-bar,
   .filter-select {
-    width: 100%;
+    width: 100%; /* Full width for smaller screens */
+    margin-right: 0; /* Remove right margin */
   }
 
   .filter-section {
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* Add bottom margin */
   }
 
   .inquiry-table th,
   .inquiry-table td {
-    font-size: 12px;
+    font-size: 12px; /* Smaller font size for table */
   }
 }
 </style>

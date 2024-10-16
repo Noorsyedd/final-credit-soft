@@ -348,7 +348,6 @@
           </v-list>
         </v-list-item>
 
-      
         <!-- Logout Button -->
         <v-list-item>
           <v-btn color="error" text @click="logout">Logout</v-btn>
@@ -416,12 +415,79 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 a {
   text-decoration: none;
 }
+
+v-list-item {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Styling for active state */
 .active {
-  background-color: #e0e0e0;
+  background-color: #3f51b5; /* Darker shade for active item */
+  color: white; /* Text color for active item */
+}
+
+/* General styles for list items */
+v-list-item {
+  border-radius: 4px; /* Rounded corners for list items */
+  padding: 12px 16px; /* Increased padding for better spacing */
+  margin: 4px 0; /* Margin to separate items */
+  display: flex; /* Align content properly */
+  align-items: center; /* Center items vertically */
+}
+
+/* Hover effect for list items */
+v-list-item:hover {
+  background-color: #f5f5f5; /* Light grey background on hover */
+  cursor: pointer; /* Change cursor on hover */
+}
+
+/* Styling for the titles */
+v-list-item-title {
+  font-size: 16px; /* Standard font size for titles */
+  font-weight: 500; /* Medium weight for titles */
+  color: #333; /* Dark color for better readability */
+}
+
+/* Subtitles styling */
+v-list-item-subtitle {
+  font-size: 14px; /* Slightly smaller font for subtitles */
+  color: #777; /* Light grey for subtitles */
+}
+
+/* Button styling for logout */
+v-btn {
+  width: 100%; /* Full width for the logout button */
+  padding: 10px; /* Padding for the button */
+  text-align: center; /* Center text */
+}
+
+/* Icons styling */
+v-list-item prepend-icon {
+  margin-right: 12px; /* Space between icon and text */
+  color: #3f51b5; /* Color for the icons */
+}
+
+/* Active item styling for icons */
+.active prepend-icon {
+  color: white; /* Change icon color for active items */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  v-list-item {
+    padding: 10px 12px; /* Reduced padding for smaller screens */
+  }
+
+  v-list-item-title {
+    font-size: 14px; /* Smaller font size for titles on mobile */
+  }
+
+  v-list-item-subtitle {
+    font-size: 12px; /* Smaller font size for subtitles on mobile */
+  }
 }
 </style>
