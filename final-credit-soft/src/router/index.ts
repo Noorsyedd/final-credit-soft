@@ -26,10 +26,6 @@ import AdminReverseInquiry from "@/components/AdminReverseInquiry.vue";
 import AdminManageInquiryUser from "@/components/AdminManageInquiryUser.vue";
 import IndividualBranchServiceCharge from "@/components/IndividualBranchServiceCharge.vue";
 import MonthlyServiceCharge from "@/components/MonthlyServiceCharge.vue";
-import NewInquiry from "@/components/NewInquiry.vue";
-import AllPreviousInquiry from "@/components/AllPreviousInquiry.vue";
-import BranchSearchInquiry from "@/components/BranchSearchInquiry.vue";
-import NewReport from "@/components/NewReport.vue";
 import DashboardLayout from "@/components/layouts/DashboardLayout.vue";
 import LoginView from "@/components/LoginView.vue";
 import SignUpView from "@/components/SignUpView.vue";
@@ -38,7 +34,7 @@ import PersonInfo from "@/components/PersonInfo.vue";
 import AddPerson from "@/components/AddPerson.vue";
 import InstitutionInfo from "@/components/InstitutionInfo.vue";
 import AddContact from "@/components/AddContact.vue";
-import SuccessPage from "@/components/SuccessPage.vue";
+
 
 const routes = [
   {
@@ -62,11 +58,7 @@ const routes = [
         name: "InstitutionInfo",
         component: InstitutionInfo,
       },
-      {
-        path: "/success-page",
-        name: "SuccessPage",
-        component: SuccessPage,
-      },
+      
       {
         path: "/add-contact",
         name: "AddContact",
@@ -212,26 +204,10 @@ const routes = [
         name: "MonthlyServiceCharge",
         component: MonthlyServiceCharge,
       },
-      {
-        path: "/new-inquiry",
-        name: "NewInquiry",
-        component: NewInquiry,
-      },
-      {
-        path: "/all-previous-inquiry",
-        name: "AllPreviousInquiry",
-        component: AllPreviousInquiry,
-      },
-      {
-        path: "/branch-search-inquiry",
-        name: "BranchSearchInquiry",
-        component: BranchSearchInquiry,
-      },
-      {
-        path: "/new-report",
-        name: "NewReport",
-        component: NewReport,
-      },
+      
+      
+      
+      
     ],
   },
   {
